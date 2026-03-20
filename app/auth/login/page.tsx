@@ -3,6 +3,7 @@ import { createClient } from "@/app/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { createUserInDb } from "@/app/lib/actions";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -14,8 +15,13 @@ export default function LoginPage() {
   const supabase = createClient();
 
   const handleSignUp = async () => {
-    await supabase.auth.signUp({ email, password });
-    alert("Check your email for confirmation!");
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (!error && data.user) {
+      await createUserInDb(data.user.id!, data.user.email!);
+      alert("Check your email for confirmation!");
+    } else {
+      setError(error?.message || "Something went wrong");
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -40,7 +46,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col gap-4 max-w-[500px] mx-auto mt-4">
       <h1 className="text-2xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleLogin} className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4">
         <input
           type="email"
           name="email"
@@ -68,8 +74,9 @@ export default function LoginPage() {
         </div>
 
         <button
-          type="submit"
+          type="button"
           className="bg-blue-500 cursor-pointer text-white p-2 rounded-md"
+          onClick={handleLogin}
         >
           Login
         </button>

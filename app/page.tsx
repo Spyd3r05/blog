@@ -1,8 +1,13 @@
 import { prisma } from "./lib/prisma";
 import Link from "next/link";
+import Image from "next/image";
 export default async function Home() {
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
+    include: {
+      user: true,
+      tags: true,
+    },
   });
 
   return (
@@ -17,11 +22,21 @@ export default async function Home() {
       {posts.map((post) => {
         return (
           <div key={post.id} className="mb-4">
-            <h2 className="text-xl font-bold">{post.title}</h2>
-            <p className="text-gray-600">{post.content}</p>
-            <small className="text-gray-500">
-              {new Date(post.createdAt).toLocaleDateString()}
-            </small>
+            <Link href={`/post/${post.id}`}>
+              <Image
+                src={post.featuredImage || ""}
+                alt={post.title}
+                width={500}
+                height={500}
+                className="w-full h-auto"
+              />
+              <h2 className="text-xl font-bold">{post.title}</h2>
+              <p className="text-gray-600">{post.content}</p>
+              <small className="text-gray-500">
+                {new Date(post.createdAt).toLocaleDateString()}
+              </small>
+            </Link>
+
             <hr className="my-2" />
           </div>
         );
