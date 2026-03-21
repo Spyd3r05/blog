@@ -16,8 +16,52 @@ export async function createPost(formData: FormData) {
 
   const title = formData.get("title") as string;
   const content = formData.get("content") as string;
-  const featuredImage = formData.get("featuredImage") as string;
   const tagsInput = formData.get("tags") as string; // comma-separated
+  const file = formData.get("featuredImage") as File;
+
+  let featuredImageUrl: string | null = null;
+
+  // If a file was uploaded, upload to Supabase Storage
+  if (file && file.size > 0) {
+    const allowedTypes = [
+      "images/jpeg",
+      "images/png",
+      "images/webp",
+      "images/jph",
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      throw new Error("Invalid file type");
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      // 5MB limit
+      throw new Error("File too large. Maximum size is 5MB.");
+    }
+
+    //generate a unique filename to avoid collisions
+    const fileExt = file.name.split(".").pop();
+    const uniqueName = `${crypto.randomUUID()}.${fileExt}`;
+    const filePath = `post-images/${uniqueName}`;
+
+    //upload to supabase storage
+    const { error: uploadError } = await supabase.storage
+      .from("blog-images")
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+
+    if (uploadError) {
+      throw new Error(`Failed to upload image: ${uploadError.message}`);
+    }
+
+    // Get the public URL (if bucket is public)
+    const { data: urlData } = supabase.storage
+      .from("blog-images")
+      .getPublicUrl(filePath);
+
+    featuredImageUrl = urlData.publicUrl;
+  }
 
   if (!title || !content) {
     throw new Error("Title and Content required!");
@@ -43,7 +87,7 @@ export async function createPost(formData: FormData) {
     data: {
       title,
       content,
-      featuredImage,
+      featuredImage: featuredImageUrl,
       userId: user.id,
       tags: {
         connect: tags.map((tag) => ({ id: tag.id })),

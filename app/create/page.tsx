@@ -30,9 +30,9 @@ export default async function CreatePage() {
         className="border border-gray-300 rounded-md p-2"
       />
       <input
-        type="text"
+        type="file"
         name="featuredImage"
-        placeholder="Featured Image URL"
+        placeholder="Featured Image"
         className="border border-gray-300 rounded-md p-2"
       />
       <input
