@@ -26,9 +26,9 @@ export default async function Home() {
               <Image
                 src={post.featuredImage || ""}
                 alt={post.title}
-                width={500}
-                height={500}
-                className="w-full h-auto"
+                width={150}
+                height={150}
+                className="w-full h-auto rounded-lg"
               />
               <h2 className="text-xl font-bold">{post.title}</h2>
               <p className="text-gray-600">{post.content}</p>

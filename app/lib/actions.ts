@@ -23,12 +23,7 @@ export async function createPost(formData: FormData) {
 
   // If a file was uploaded, upload to Supabase Storage
   if (file && file.size > 0) {
-    const allowedTypes = [
-      "images/jpeg",
-      "images/png",
-      "images/webp",
-      "images/jph",
-    ];
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/jpg"];
     if (!allowedTypes.includes(file.type)) {
       throw new Error("Invalid file type");
     }
