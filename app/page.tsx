@@ -1,6 +1,10 @@
 import { prisma } from "./lib/prisma";
 import Link from "next/link";
-import Image from "next/image";
+import Footer from "@/components/Footer";
+import PostsGrid from "@/components/PostsGrid";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+
 export default async function Home() {
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
@@ -11,36 +15,49 @@ export default async function Home() {
   });
 
   return (
-    <div className="mt-2 max-w-[800px] mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
-      <Link
-        href="/create"
-        className="bg-blue-500 cursor-pointer text-white p-2 rounded-md"
-      >
-        Create Post
-      </Link>
-      {posts.map((post) => {
-        return (
-          <div key={post.id} className="mb-4">
-            <Link href={`/post/${post.id}`}>
-              <Image
-                src={post.featuredImage || ""}
-                alt={post.title}
-                width={150}
-                height={150}
-                className="w-full h-auto rounded-lg"
-              />
-              <h2 className="text-xl font-bold">{post.title}</h2>
-              <p className="text-gray-600">{post.content}</p>
-              <small className="text-gray-500">
-                {new Date(post.createdAt).toLocaleDateString()}
-              </small>
-            </Link>
+    <div className="min-h-screen flex flex-col items-center">
+      <Navbar />
 
-            <hr className="my-2" />
+      <main className="w-full max-w-5xl mx-auto px-6 md:px-8 pt-8 md:pt-14 pb-16 flex flex-col flex-1">
+        <Hero />
+
+        {/* divider section */}
+        <div className="flex items-center gap-3 mt-14 mb-8 w-full">
+          <div className="w-3 h-1 bg-[#1A1A1A]"></div>
+          <h2 className="font-extrabold text-[15px] uppercase tracking-widest text-[#1A1A1A] whitespace-nowrap">
+            THE LEDGER ENTRIES
+          </h2>
+          <div className="flex-grow border-b-[2px] border-dashed border-[#1A1A1A]/30 self-center h-0 relative top-[1px]"></div>
+        </div>
+
+        {/* Post Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {posts.map((post, i) => {
+            const isFeatured = i === 0;
+            return (
+              <PostsGrid
+                key={i}
+                post={post}
+                index={i}
+                isFeatured={isFeatured}
+              />
+            );
+          })}
+        </div>
+
+        {/* Action Button */}
+        <Link
+          href="#"
+          className="mt-14 block w-full outline-none md:max-w-md md:mx-auto"
+        >
+          <div className="bg-[#1C2C1D] text-white font-black text-sm uppercase tracking-widest py-[18px] border-[3px] border-[#1A1A1A] rounded-md shadow-[4px_4px_0px_0px_#1A1A1A] text-center w-full transition-transform active:translate-y-[4px] active:translate-x-[4px] active:shadow-none hover:bg-black">
+            DIG DEEPER INTO THE BLOGS
           </div>
-        );
-      })}
+        </Link>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

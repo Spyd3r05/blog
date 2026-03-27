@@ -1,9 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap");
 @import "tailwindcss";
 
-body {
-  font-family: "Outfit", sans-serif;
+@theme {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+body {
+  background-color: #F8F5F0;
+  color: #1A1A1A;
+}
+
 .clip-path-triangle {
   clip-path: polygon(100% 0%, 0% 0%, 50% 100%);
 }
