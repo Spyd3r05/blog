@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { HeroPortfolio } from "@/components/HeroPortfolio";
+import { TradeTools } from "@/components/TradeTools";
 
 const Portfolio = () => {
   return (
@@ -9,6 +10,7 @@ const Portfolio = () => {
       <Navbar />
       <main className="max-w-4xl mx-auto px-6 pt-12 space-y-20">
         <HeroPortfolio />
+        <TradeTools />
       </main>
       <Footer />
     </div>
