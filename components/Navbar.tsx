@@ -4,15 +4,20 @@ const Navbar = () => {
   return (
     <header className="w-full border-b-[3px] border-[#1A1A1A] bg-[#F8F5F0]">
       <div className="w-full max-w-5xl mx-auto flex items-center justify-between p-4 px-6 md:px-8">
-        <div className="flex items-center gap-2">
-          <TreePine className="w-6 h-6 text-[#1A1A1A]" strokeWidth={2.5} />
-          <span className="font-black text-xl tracking-tight mt-1">
-            THE INTROVERT DEV
-          </span>
-        </div>
+        <Link href="/">
+          <div className="flex items-center gap-2">
+            <TreePine className="w-6 h-6 text-[#1A1A1A]" strokeWidth={2.5} />
+            <span className="font-black text-xl tracking-tight mt-1">
+              THE INTROVERT DEV
+            </span>
+          </div>
+        </Link>
 
         <div className="hidden md:flex gap-8 items-center text-[11px] font-black uppercase tracking-widest text-[#1A1A1A]/70">
-          <Link href="#" className="hover:text-black transition-colors">
+          <Link
+            href="/portfolio"
+            className="hover:text-black transition-colors"
+          >
             Portfolio
           </Link>
           <Link href="#" className="hover:text-black transition-colors">
