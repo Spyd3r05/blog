@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { HeroPortfolio } from "@/components/HeroPortfolio";
 import { TradeTools } from "@/components/TradeTools";
+import JourneySection from "@/components/JourneySection";
 
 const Portfolio = () => {
   return (
@@ -11,6 +12,7 @@ const Portfolio = () => {
       <main className="max-w-4xl mx-auto px-6 pt-12 space-y-20">
         <HeroPortfolio />
         <TradeTools />
+        <JourneySection />
       </main>
       <Footer />
     </div>
