@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import { HeroPortfolio } from "@/components/HeroPortfolio";
 import { TradeTools } from "@/components/TradeTools";
 import JourneySection from "@/components/JourneySection";
+import ContactSection from "@/components/ContactSection";
 
 const Portfolio = () => {
   return (
@@ -13,6 +14,7 @@ const Portfolio = () => {
         <HeroPortfolio />
         <TradeTools />
         <JourneySection />
+        <ContactSection />
       </main>
       <Footer />
     </div>
