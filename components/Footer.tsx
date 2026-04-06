@@ -9,7 +9,10 @@ const Footer = () => {
           <span className="hidden md:inline"> </span>STITCHED IN SOLITUDE
         </p>
         <div className="flex flex-wrap gap-x-8 gap-y-3 text-[10px] font-black uppercase text-[#1A1A1A]/40 tracking-widest">
-          <Link href="#" className="hover:text-[#1A1A1A] transition-colors">
+          <Link
+            href="/portfolio"
+            className="hover:text-[#1A1A1A] transition-colors"
+          >
             PORTFOLIO
           </Link>
           <Link href="#" className="hover:text-[#1A1A1A] transition-colors">

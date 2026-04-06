@@ -4,6 +4,61 @@
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+:root {
+  --font-outfit: "Outfit", sans-serif;
+  --font-work-sans: "Work Sans", sans-serif;
+  --font-plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
+  --error-container: #ffdad6;
+  --primary-fixed-dim: #add19b;
+  --tertiary-container: #722f0c;
+  --tertiary-fixed: #ffdbcd;
+  --outline: #73796e;
+  --on-error: #ffffff;
+  --surface-container-highest: #e5e2da;
+  --on-secondary-fixed-variant: #653d1e;
+  --on-secondary: #ffffff;
+  --surface: #fcf9f0;
+  --on-tertiary: #ffffff;
+  --secondary-container: #fdc39a;
+  --secondary-fixed: #ffdcc5;
+  --on-primary-container: #97bb87;
+  --surface-variant: #e5e2da;
+  --outline-variant: #c3c8bc;
+  --secondary-fixed-dim: #f4bb92;
+  --surface-container-low: #f6f3ea;
+  --on-surface-variant: #43483f;
+  --inverse-primary: #add19b;
+  --inverse-surface: #31312b;
+  --on-primary-fixed-variant: #304e25;
+  --on-primary: #ffffff;
+  --surface-bright: #fcf9f0;
+  --secondary: #805533;
+  --surface-container-lowest: #ffffff;
+  --primary-fixed: #c8edb5;
+  --surface-tint: #47673a;
+  --on-tertiary-container: #f8986d;
+  --on-primary-fixed: #052101;
+  --primary: #17340e;
+  --inverse-on-surface: #f4f1e8;
+  --on-surface: #1c1c17;
+  --surface-container: #f1eee5;
+  --on-error-container: #93000a;
+  --primary-container: #2d4b22;
+  --on-secondary-fixed: #301400;
+  --background: #fcf9f0;
+  --surface-container-high: #ebe8df;
+  --on-background: #1c1c17;
+  --tertiary-fixed-dim: #ffb596;
+  --surface-dim: #dddad1;
+  --on-tertiary-fixed-variant: #76320f;
+  --error: #ba1a1a;
+  --on-tertiary-fixed: #360f00;
+  --on-secondary-container: #794e2e;
+  --tertiary: #521c00;
+
+}
+
+
 body {
   background-color: #F8F5F0;
   color: #1A1A1A;
@@ -11,4 +66,14 @@ body {
 
 .clip-path-triangle {
   clip-path: polygon(100% 0%, 0% 0%, 50% 100%);
+}
+
+.paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+body {
+  min-height: max(884px, 100dvh);
 }
