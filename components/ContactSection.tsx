@@ -10,7 +10,7 @@ const ContactSection = () => {
             Have a project in mind or just want to talk?
           </h2>
           <p className="font-body opacity-80 max-w-xl text-lg">
-            I'm always open to discussing web architecture, minimalism in
+            I am always open to discussing web architecture, minimalism in
             design, or the best hiking trails in the PNW.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
