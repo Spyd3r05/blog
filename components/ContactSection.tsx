@@ -14,7 +14,7 @@ const ContactSection = () => {
             design, or the best hiking trails in the PNW.
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
-            <Link href="#">
+            <Link href="mailto:[agnesnzivu05@gmail.com]">
               <button className="bg-(--surface-container-lowest) text-(--primary) font-headline font-bold px-8 py-3 rounded-xl border-2 border-(--on-surface) shadow-[4px_4px_0px_0px_#1c1c17] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#1c1c17] transition-all active:scale-95">
                 Say Hello
               </button>
